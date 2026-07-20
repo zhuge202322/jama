@@ -4,6 +4,7 @@ import { MessageCircle } from "lucide-react";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { siteConfig, whatsappUrl } from "@/lib/site";
+import "leaflet/dist/leaflet.css";
 import "./globals.css";
 
 const display = Newsreader({

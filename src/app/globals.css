@@ -192,14 +192,22 @@ h3 {
 }
 
 .brand-link {
+  position: relative;
+  width: 205px;
+  height: 76px;
   flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
+  overflow: hidden;
 }
 
 .brand-link img {
-  width: 184px;
+  position: absolute;
+  top: 52%;
+  left: 0;
+  width: 205px;
   height: auto;
+  transform: translateY(-50%);
 }
 
 .desktop-nav {
@@ -1072,60 +1080,84 @@ h3 {
   align-items: stretch;
 }
 
-.singapore-map {
+.singapore-map-shell {
   position: relative;
   min-height: 520px;
   border: 1px solid rgba(15, 82, 73, 0.18);
   border-radius: 8px;
-  background: var(--surface);
+  background: #dfe9e5;
   overflow: hidden;
+  isolation: isolate;
 }
 
-.singapore-map::before {
-  content: "Singapore";
-  position: absolute;
-  top: 22px;
-  left: 24px;
-  color: rgba(15, 82, 73, 0.48);
-  font-size: 12px;
-  font-weight: 800;
-  text-transform: uppercase;
+.singapore-map {
+  width: 100%;
+  min-height: 520px;
+  font-family: var(--font-sans), system-ui, sans-serif;
 }
 
-.singapore-map svg {
-  position: absolute;
-  inset: 54px 24px 24px;
-  width: calc(100% - 48px);
-  height: calc(100% - 78px);
+.singapore-map .leaflet-control-zoom {
+  overflow: hidden;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 8px 24px rgba(7, 31, 26, 0.18);
 }
 
-.singapore-map path {
-  fill: #dce9e2;
-  stroke: rgba(15, 82, 73, 0.42);
-  stroke-width: 3;
-  stroke-linejoin: round;
+.singapore-map .leaflet-control-zoom a {
+  width: 36px;
+  height: 36px;
+  border-color: var(--border);
+  color: var(--primary-dark);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 21px;
+  line-height: 36px;
 }
 
-.location-marker {
-  position: absolute;
-  z-index: 2;
-  transform: translate(-50%, -50%);
+.singapore-map .leaflet-control-attribution {
+  padding: 3px 6px;
+  background: rgba(255, 255, 255, 0.88);
+  color: #49635d;
+  font-size: 10px;
 }
 
-.location-pin {
-  width: 38px;
-  height: 38px;
-  flex: 0 0 auto;
+.singapore-map .leaflet-control-attribution a {
+  color: var(--primary);
+}
+
+.location-map-marker {
+  border: 0;
+  background: transparent;
+}
+
+.location-map-marker span {
+  width: 40px;
+  height: 40px;
   display: grid;
   place-items: center;
-  border: 2px solid #ffffff;
+  border: 3px solid #ffffff;
   border-radius: 50%;
   background: var(--orange-strong);
   color: #ffffff;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 8px 22px rgba(73, 43, 8, 0.28);
   font-size: 11px;
   font-weight: 800;
   font-variant-numeric: tabular-nums;
+}
+
+.location-map-tooltip {
+  padding: 8px 11px;
+  border: 0;
+  border-radius: 4px;
+  background: var(--primary-dark);
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(7, 31, 26, 0.2);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.leaflet-tooltip-top.location-map-tooltip::before {
+  border-top-color: var(--primary-dark);
 }
 
 .location-list {
@@ -1139,11 +1171,33 @@ h3 {
 
 .location-list li {
   min-height: 76px;
+  border-bottom: 1px solid var(--border);
+  transition: background-color 180ms ease;
+}
+
+.location-list button {
+  width: 100%;
+  min-height: 76px;
   display: grid;
   grid-template-columns: 42px 1fr;
   align-items: center;
   gap: 12px;
-  border-bottom: 1px solid var(--border);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.location-list li:hover,
+.location-list li.active {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.location-list button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
 }
 
 .location-list span {
@@ -1712,9 +1766,10 @@ h3 {
 }
 
 .footer-brand img {
-  width: 90px;
-  height: auto;
+  width: 220px;
+  height: 92px;
   margin-bottom: 22px;
+  object-fit: cover;
 }
 
 .footer-brand p,
@@ -2016,7 +2071,12 @@ h3 {
   }
 
   .brand-link img {
-    width: 150px;
+    width: 170px;
+  }
+
+  .brand-link {
+    width: 170px;
+    height: 64px;
   }
 
   .nav-quote {
@@ -2091,6 +2151,7 @@ h3 {
     flex-direction: column;
   }
 
+  .singapore-map-shell,
   .singapore-map {
     min-height: 380px;
   }

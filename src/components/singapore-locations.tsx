@@ -1,25 +1,100 @@
+"use client";
+
+import type { Map as LeafletMap, Marker } from "leaflet";
+import { useEffect, useRef, useState } from "react";
 import { SectionIntro } from "@/components/section-intro";
 
 type Location = {
   name: string;
-  position: { left: string; top: string };
+  coordinates: [number, number];
 };
 
 const locations: Location[] = [
-  {
-    name: "Changi Airport",
-    position: { left: "84%", top: "44%" },
-  },
-  { name: "Westgate Mall", position: { left: "22%", top: "40%" } },
-  { name: "CityLink Mall", position: { left: "58%", top: "45%" } },
-  { name: "Tiong Bahru Plaza", position: { left: "47%", top: "59%" } },
-  {
-    name: "Haji Lane",
-    position: { left: "62%", top: "36%" },
-  },
+  { name: "Changi Airport", coordinates: [1.3644, 103.9915] },
+  { name: "Westgate Mall", coordinates: [1.3332, 103.7421] },
+  { name: "CityLink Mall", coordinates: [1.2924, 103.8556] },
+  { name: "Tiong Bahru Plaza", coordinates: [1.2864, 103.8272] },
+  { name: "Haji Lane", coordinates: [1.3009, 103.8594] },
 ];
 
 export function SingaporeLocations() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const mapRef = useRef<LeafletMap | null>(null);
+  const markersRef = useRef<Marker[]>([]);
+  const [activeLocation, setActiveLocation] = useState<number | null>(null);
+
+  useEffect(() => {
+    let disposed = false;
+
+    async function createMap() {
+      const L = await import("leaflet");
+
+      if (disposed || !containerRef.current) return;
+
+      const map = L.map(containerRef.current, {
+        center: [1.3521, 103.8198],
+        keyboard: true,
+        scrollWheelZoom: false,
+        zoom: 11,
+        zoomControl: true,
+      });
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 19,
+      }).addTo(map);
+
+      const markers = locations.map((location, index) => {
+        const marker = L.marker(location.coordinates, {
+          icon: L.divIcon({
+            className: "location-map-marker",
+            html: `<span>${String(index + 1).padStart(2, "0")}</span>`,
+            iconAnchor: [20, 20],
+            iconSize: [40, 40],
+          }),
+          keyboard: true,
+          title: location.name,
+        }).addTo(map);
+
+        marker.bindTooltip(location.name, {
+          className: "location-map-tooltip",
+          direction: "top",
+          offset: [0, -15],
+        });
+        marker.on("click", () => setActiveLocation(index));
+        return marker;
+      });
+
+      map.fitBounds(
+        L.latLngBounds(locations.map((location) => location.coordinates)),
+        { maxZoom: 12, padding: [42, 42] },
+      );
+
+      mapRef.current = map;
+      markersRef.current = markers;
+    }
+
+    void createMap();
+
+    return () => {
+      disposed = true;
+      markersRef.current = [];
+      mapRef.current?.remove();
+      mapRef.current = null;
+    };
+  }, []);
+
+  function focusLocation(index: number) {
+    const map = mapRef.current;
+    const marker = markersRef.current[index];
+
+    if (!map || !marker) return;
+
+    setActiveLocation(index);
+    map.flyTo(marker.getLatLng(), 14, { duration: 0.8 });
+    marker.openTooltip();
+  }
+
   return (
     <section className="section section-cream" id="locations">
       <div className="container">
@@ -31,36 +106,20 @@ export function SingaporeLocations() {
           />
         </div>
         <div className="location-map-layout">
-          <div
-            aria-label="Map of Singapore showing Lumina Voyage locations at Changi Airport, Westgate Mall, CityLink Mall, Tiong Bahru Plaza and Haji Lane"
-            className="singapore-map"
-            role="img"
-          >
-            <svg aria-hidden="true" viewBox="0 0 1000 480">
-              <path
-                d="M91 239 130 194 194 170 257 129 326 137 390 109 473 125 532 105 603 137 668 132 722 162 783 166 822 194 899 205 928 237 882 265 841 266 799 290 722 284 677 313 610 301 553 323 489 306 427 323 374 299 310 307 255 279 197 283 149 262Z"
-              />
-              <path d="m475 356 54-13 44 19-49 23Z" />
-              <path d="m699 342 34-8 22 16-35 14Z" />
-              <path d="m268 342 37-7 18 15-34 13Z" />
-            </svg>
-            {locations.map((location, index) => (
-              <div
-                className="location-marker"
-                key={location.name}
-                style={location.position}
-              >
-                <span className="location-pin" aria-hidden="true">
-                  0{index + 1}
-                </span>
-              </div>
-            ))}
+          <div className="singapore-map-shell">
+            <div
+              aria-label="Interactive map of Singapore showing Lumina Voyage locations at Changi Airport, Westgate Mall, CityLink Mall, Tiong Bahru Plaza and Haji Lane"
+              className="singapore-map"
+              ref={containerRef}
+            />
           </div>
           <ol className="location-list">
             {locations.map((location, index) => (
-              <li key={location.name}>
-                <span>0{index + 1}</span>
-                <strong>{location.name}</strong>
+              <li className={activeLocation === index ? "active" : ""} key={location.name}>
+                <button onClick={() => focusLocation(index)} type="button">
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <strong>{location.name}</strong>
+                </button>
               </li>
             ))}
           </ol>

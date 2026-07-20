@@ -10,9 +10,9 @@ export function Footer() {
         <div className="footer-brand">
           <Image
             alt="Lumina Voyage"
-            height={80}
-            src="/images/logo-square.jpg"
-            width={96}
+            height={1024}
+            src="/images/logo.png"
+            width={1536}
           />
           <p>
             Custom photo booth experiences for events across Singapore.

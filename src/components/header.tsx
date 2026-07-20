@@ -74,10 +74,10 @@ export function Header() {
           <Link className="brand-link" href="/" aria-label="Lumina Voyage home">
             <Image
               alt="Lumina Voyage"
-              height={54}
+              height={1024}
               priority
-              src="/images/logo-horizontal.jpg"
-              width={184}
+              src="/images/logo.png"
+              width={1536}
             />
           </Link>
 

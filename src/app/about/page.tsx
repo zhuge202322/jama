@@ -30,7 +30,7 @@ export default function AboutPage() {
               alt="Lumina Voyage stacked logo with camera and globe emblem"
               fill
               sizes="(max-width: 820px) 100vw, 50vw"
-              src="/images/logo-square.jpg"
+              src="/images/logo.png"
             />
           </div>
           <div className="split-copy">
