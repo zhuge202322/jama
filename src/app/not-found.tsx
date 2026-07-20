@@ -13,7 +13,7 @@ export default function NotFound() {
         <div className="hero-actions">
           <CtaLink href="/">Back to home</CtaLink>
           <CtaLink href="/contact" variant="text">
-            Start an enquiry
+            Get a free quote
           </CtaLink>
         </div>
       </div>

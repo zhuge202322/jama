@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Camera, Mail, MapPin, MessageCircle } from "lucide-react";
+import { Camera, Mail, MapPin, MessageCircle, Music2, Users } from "lucide-react";
 import { navItems, siteConfig, whatsappUrl } from "@/lib/site";
 
 export function Footer() {
@@ -15,8 +15,7 @@ export function Footer() {
             width={96}
           />
           <p>
-            Custom newspaper photo booth experiences for events across
-            Singapore.
+            Custom photo booth experiences for events across Singapore.
           </p>
         </div>
 
@@ -44,7 +43,7 @@ export function Footer() {
             <li>
               <MessageCircle aria-hidden="true" size={17} />
               <a href={whatsappUrl()} rel="noreferrer" target="_blank">
-                WhatsApp us
+                WhatsApp {siteConfig.whatsappLabel}
               </a>
             </li>
             <li>
@@ -57,14 +56,26 @@ export function Footer() {
                 Instagram
               </a>
             </li>
+            <li>
+              <Music2 aria-hidden="true" size={17} />
+              <a href={siteConfig.tiktok} rel="noreferrer" target="_blank">
+                TikTok: Lumina Voyage
+              </a>
+            </li>
+            <li>
+              <Users aria-hidden="true" size={17} />
+              <a href={siteConfig.facebook} rel="noreferrer" target="_blank">
+                Facebook: Lumina Voyage Tech
+              </a>
+            </li>
           </ul>
         </div>
 
         <div className="footer-cta">
           <p className="eyebrow eyebrow-light">Planning an event?</p>
-          <h2>Make your guests the story.</h2>
+          <h2>Make your guests the story</h2>
           <Link className="button button-accent" href="/contact">
-            Start an enquiry
+            Get a Free Quote
           </Link>
         </div>
       </div>

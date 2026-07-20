@@ -31,7 +31,7 @@ export default function HowItWorksPage() {
         eyebrow="How it works"
         image="/images/green-booths-photo.jpg"
         imageAlt="Lumina Voyage newspaper photo booth equipment"
-        title="From your idea to their front page."
+        title="From your idea to your front page"
       />
 
       <section className="section section-white">
@@ -118,7 +118,7 @@ export default function HowItWorksPage() {
             <p className="eyebrow">Bring us the brief</p>
             <h2>We will turn the event details into a clear experience plan.</h2>
           </div>
-          <CtaLink href="/contact">Start an enquiry</CtaLink>
+          <CtaLink href="/contact">Get a free quote</CtaLink>
         </div>
       </section>
     </>

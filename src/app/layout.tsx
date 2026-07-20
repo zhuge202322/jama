@@ -66,12 +66,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     email: siteConfig.email,
     address: {
       "@type": "PostalAddress",
-      streetAddress: "135 Middle Road, #02-16, Bylands Building",
+      streetAddress: "101 Cecil Street, #13-10, Tong Eng Building",
       addressLocality: "Singapore",
-      postalCode: "188975",
+      postalCode: "069533",
       addressCountry: "SG",
     },
-    sameAs: [siteConfig.instagram],
+    sameAs: [siteConfig.instagram, siteConfig.tiktok, siteConfig.facebook],
   };
 
   return (

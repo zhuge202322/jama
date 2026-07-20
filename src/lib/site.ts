@@ -2,23 +2,49 @@ export const siteConfig = {
   name: "Lumina Voyage",
   legalName: "Lumina Voyage Tech Pte. Ltd.",
   description:
-    "Custom newspaper photo booth experiences for corporate events, MICE, brand activations and celebrations in Singapore.",
+    "Custom photo booth experiences for corporate events, MICE, brand activations and celebrations in Singapore.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
-  email: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "yugq2022@gmail.com",
+  email:
+    process.env.NEXT_PUBLIC_CONTACT_EMAIL ??
+    "photo88@luminavoyagetech.com",
   whatsappNumber:
-    process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "6585064986",
+    process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "658148399",
+  whatsappLabel: "65-8148399",
   address:
-    "135 Middle Road, #02-16, Bylands Building, Singapore 188975",
+    "101 Cecil Street, #13-10, Tong Eng Building, Singapore 069533",
   instagram: "https://www.instagram.com/luminavoyagetech/",
+  tiktok:
+    process.env.NEXT_PUBLIC_TIKTOK_URL ??
+    "https://www.tiktok.com/@luminavoyage",
+  facebook:
+    process.env.NEXT_PUBLIC_FACEBOOK_URL ??
+    "https://www.facebook.com/luminavoyagetech",
 };
 
 export const navItems = [
-  { href: "/newspaper-photo-booth", label: "Newspaper Booth" },
+  { href: "/newspaper-photo-booth", label: "Photo Booth" },
   { href: "/how-it-works", label: "How it works" },
   { href: "/gallery", label: "Gallery" },
   { href: "/events", label: "For events" },
-  { href: "/about", label: "About" },
+  { href: "/about", label: "About Us" },
   { href: "/faq", label: "FAQ" },
+];
+
+export const latestUpdates = [
+  {
+    label: "Location update",
+    title: "Lumina Voyage across Singapore",
+    description:
+      "Find our photo booth experiences at Changi Airport, Westgate Mall, CityLink Mall, Tiong Bahru Plaza and Haji Lane.",
+    href: "/#locations",
+  },
+  {
+    label: "Edition spotlight",
+    title: "Marina Bay and Jewel editions",
+    description:
+      "Explore two new Singapore-inspired newspaper layouts featuring destinations guests instantly recognise.",
+    href: "/gallery",
+  },
 ];
 
 export const eventTypes = [
@@ -252,6 +278,6 @@ export const faqs = [
 export function whatsappUrl(message?: string) {
   const text =
     message ??
-    "Hello Lumina Voyage, I would like to enquire about the Newspaper Photo Booth for an event.";
+    "Hello Lumina Voyage, I would like to enquire about a photo booth experience for an event.";
   return `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(text)}`;
 }

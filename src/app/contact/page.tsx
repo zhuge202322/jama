@@ -29,9 +29,11 @@ export default function ContactPage() {
             <p className="eyebrow">Start with the essentials</p>
             <h2>A stronger brief makes a better front page.</h2>
             <p>
-              Event date, venue, attendance, programme timing and creative
-              direction help us recommend a suitable configuration. You do not
-              need every answer before getting in touch.
+              Sharing your event date, venue, expected attendance, programme
+              schedule, and creative direction will help us recommend the most
+              suitable photo booth configuration. Don&apos;t worry if you don&apos;t
+              have all the details yet&mdash;we&apos;re happy to discuss at any stage
+              of the planning process.
             </p>
             <div className="contact-lines">
               <a href={`mailto:${siteConfig.email}`}>

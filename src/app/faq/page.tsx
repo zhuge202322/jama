@@ -5,9 +5,9 @@ import { SectionIntro } from "@/components/section-intro";
 import { faqs } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Newspaper Photo Booth FAQ",
+  title: "Photo Booth Help & FAQ",
   description:
-    "Answers about customisation, event suitability, prints, digital delivery, venue requirements and booking a Lumina Voyage Newspaper Photo Booth.",
+    "Find practical answers about Lumina Voyage photo booth experiences, event planning, venues, prints and guest images.",
   alternates: { canonical: "/faq" },
 };
 
@@ -25,22 +25,17 @@ export default function FaqPage() {
   return (
     <>
       <PageHero
-        actions={<CtaLink href="/contact">Ask about your event</CtaLink>}
         compact
-        description="Practical answers about the product, event planning, venue requirements and guest image handling."
-        eyebrow="Frequently asked questions"
+        description="Need help? We've got the answers you're looking for."
+        eyebrow="Help & FAQs"
         image="/images/haji-lane-template.png"
         imageAlt="Custom editorial newspaper layout for a photo booth"
-        title="Before your edition goes to print."
+        title="Support"
       />
 
       <section className="section section-white">
         <div className="narrow">
-          <SectionIntro
-            description="Event requirements vary. Your quotation and accepted service terms remain the final record of the agreed scope."
-            eyebrow="Planning questions"
-            title="Clear answers, with no guessed promises."
-          />
+          <SectionIntro title="Frequently Asked Questions" />
           <div className="faq-list">
             {faqs.map((faq) => (
               <details className="faq-item" key={faq.question}>
@@ -54,11 +49,15 @@ export default function FaqPage() {
 
       <section className="cta-band">
         <div className="container cta-band-inner">
-          <div>
-            <p className="eyebrow">Still deciding?</p>
-            <h2>Share the event details and we will help define the setup.</h2>
+          <div className="cta-band-copy">
+            <p className="eyebrow">Still have questions?</p>
+            <h2>We&apos;re here to help.</h2>
+            <p>
+              Couldn&apos;t find what you were looking for? Get in touch with our
+              team and we&apos;ll be happy to help.
+            </p>
           </div>
-          <CtaLink href="/contact">Get a free quote</CtaLink>
+          <CtaLink href="/contact">Contact us</CtaLink>
         </div>
       </section>
 

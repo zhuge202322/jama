@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Lumina Voyage",
     short_name: "Lumina Voyage",
     description:
-      "Newspaper photo booth experiences for events in Singapore.",
+      "Photo booth experiences for events in Singapore.",
     start_url: "/",
     display: "standalone",
     background_color: "#fbfcf8",

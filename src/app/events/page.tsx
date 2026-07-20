@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { ArrowRight, Building2, Heart, Megaphone, TentTree } from "lucide-react";
 import { CtaLink } from "@/components/cta-link";
 import { PageHero } from "@/components/page-hero";
-import { SectionIntro } from "@/components/section-intro";
 import { eventTypes } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -52,11 +51,6 @@ export default function EventsPage() {
 
       <section className="section section-white">
         <div className="container">
-          <SectionIntro
-            description="One product can tell very different stories. We adjust the creative direction, guest journey and event configuration to fit the brief."
-            eyebrow="Choose the occasion"
-            title="The story starts with your audience."
-          />
           <div className="event-detail-list">
             {eventTypes.map((event, index) => {
               const Icon = icons[index];

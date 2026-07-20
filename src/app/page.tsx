@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -12,12 +11,13 @@ import {
   Sparkles,
 } from "lucide-react";
 import { CtaLink } from "@/components/cta-link";
+import { FeaturedEditions } from "@/components/featured-editions";
 import { PageHero } from "@/components/page-hero";
 import { SectionIntro } from "@/components/section-intro";
+import { SingaporeLocations } from "@/components/singapore-locations";
 import {
   customisationItems,
   eventTypes,
-  galleryItems,
   guestSteps,
 } from "@/lib/site";
 
@@ -43,7 +43,7 @@ export default function Home() {
           </>
         }
         description="Create a custom newspaper photo booth experience built around your event. Guests step into frame, receive a branded front page to take home, and enjoy a digital keepsake designed for sharing."
-        eyebrow="Newspaper Photo Booth · Singapore"
+        eyebrow="Newspaper Photo Booth | Singapore"
         image="/images/green-booths-photo.jpg"
         imageAlt="Two green Lumina Voyage newspaper photo booths"
         title="Turn every guest into the headline."
@@ -62,14 +62,7 @@ export default function Home() {
 
       <section className="section section-white">
         <div className="container split-section">
-          <div className="split-media">
-            <Image
-              alt="Haji Lane Gazette personalised newspaper photo sample"
-              fill
-              sizes="(max-width: 820px) 100vw, 50vw"
-              src="/images/haji-lane-sample.jpg"
-            />
-          </div>
+          <FeaturedEditions />
           <div className="split-copy">
             <p className="eyebrow">More than a photo</p>
             <h2>A moment guests can hold, keep and share.</h2>
@@ -97,7 +90,7 @@ export default function Home() {
               </li>
             </ul>
             <CtaLink href="/newspaper-photo-booth" variant="text">
-              Explore the Newspaper Booth
+              Explore the Photo Booth
             </CtaLink>
           </div>
         </div>
@@ -172,38 +165,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section section-cream">
-        <div className="container">
-          <div className="section-heading-row">
-            <SectionIntro
-              description="Explore newspaper layouts, branded booth formats and creative directions for different occasions."
-              eyebrow="Selected work"
-              title="See the story take shape."
-            />
-            <CtaLink href="/gallery" variant="text">
-              View the gallery
-            </CtaLink>
-          </div>
-          <div className="preview-gallery">
-            {galleryItems.slice(0, 3).map((item) => (
-              <figure key={item.src}>
-                <div>
-                  <Image
-                    alt={item.alt}
-                    fill
-                    sizes="(max-width: 700px) 100vw, 33vw"
-                    src={item.src}
-                  />
-                </div>
-                <figcaption>
-                  <strong>{item.title}</strong>
-                  <span>{item.note}</span>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-        </div>
-      </section>
+      <SingaporeLocations />
 
       <section className="section section-white">
         <div className="container">

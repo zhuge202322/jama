@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Camera, Mail, Menu, MessageCircle, X } from "lucide-react";
+import { Camera, Mail, Menu, MessageCircle, Music2, Users, X } from "lucide-react";
 import { navItems, siteConfig, whatsappUrl } from "@/lib/site";
 
 export function Header() {
@@ -28,7 +28,7 @@ export function Header() {
     <header className="site-header">
       <div className="utility-bar">
         <div className="container utility-inner">
-          <p>Newspaper photo booth experiences in Singapore</p>
+          <p>Photo booth experiences in Singapore</p>
           <div className="utility-links">
             <a href={`mailto:${siteConfig.email}`}>
               <Mail aria-hidden="true" size={15} />
@@ -36,15 +36,34 @@ export function Header() {
             </a>
             <a href={whatsappUrl()} rel="noreferrer" target="_blank">
               <MessageCircle aria-hidden="true" size={15} />
-              <span>WhatsApp</span>
+              <span>WhatsApp {siteConfig.whatsappLabel}</span>
             </a>
             <a
-              aria-label="Lumina Voyage on Instagram"
+              className="utility-social"
               href={siteConfig.instagram}
               rel="noreferrer"
               target="_blank"
             >
               <Camera aria-hidden="true" size={16} />
+              <span>Instagram</span>
+            </a>
+            <a
+              className="utility-social"
+              href={siteConfig.tiktok}
+              rel="noreferrer"
+              target="_blank"
+            >
+              <Music2 aria-hidden="true" size={16} />
+              <span>TikTok</span>
+            </a>
+            <a
+              className="utility-social"
+              href={siteConfig.facebook}
+              rel="noreferrer"
+              target="_blank"
+            >
+              <Users aria-hidden="true" size={16} />
+              <span>Facebook</span>
             </a>
           </div>
         </div>
@@ -128,6 +147,20 @@ export function Header() {
           >
             Get a free quote
           </Link>
+          <div className="mobile-social-links" aria-label="Social media">
+            <a href={siteConfig.instagram} rel="noreferrer" target="_blank">
+              <Camera aria-hidden="true" size={18} />
+              Instagram
+            </a>
+            <a href={siteConfig.tiktok} rel="noreferrer" target="_blank">
+              <Music2 aria-hidden="true" size={18} />
+              TikTok
+            </a>
+            <a href={siteConfig.facebook} rel="noreferrer" target="_blank">
+              <Users aria-hidden="true" size={18} />
+              Facebook
+            </a>
+          </div>
         </nav>
       </div>
     </header>

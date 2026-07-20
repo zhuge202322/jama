@@ -13,7 +13,7 @@ Open `http://localhost:3000`.
 
 ## Environment
 
-Copy `.env.example` to `.env.local`. The public contact details have temporary defaults from the client brief. Production enquiry delivery requires `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, and `EMAIL_FROM`.
+Copy `.env.example` to `.env.local`. Public contact and social links have client-provided defaults and can be overridden through the documented `NEXT_PUBLIC_*` variables. Production enquiry delivery requires `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, and `EMAIL_FROM`.
 
 ## Quality checks
 

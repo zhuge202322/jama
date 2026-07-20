@@ -14,7 +14,8 @@ import {
 import { CtaLink } from "@/components/cta-link";
 import { PageHero } from "@/components/page-hero";
 import { SectionIntro } from "@/components/section-intro";
-import { customisationItems, faqs, projectSteps, siteConfig } from "@/lib/site";
+import { UpdatesCarousel } from "@/components/updates-carousel";
+import { customisationItems, projectSteps, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Newspaper Photo Booth Singapore",
@@ -95,6 +96,8 @@ export default function NewspaperPhotoBoothPage() {
         imageAlt="Personalised Haji Lane newspaper-style photo sample"
         title="Your event story, printed on the front page."
       />
+
+      <UpdatesCarousel />
 
       <section className="section section-white">
         <div className="container split-section reverse">
@@ -235,30 +238,6 @@ export default function NewspaperPhotoBoothPage() {
               print format, venue and programme. The agreed requirements are
               recorded in the proposal.
             </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="section section-cream">
-        <div className="narrow">
-          <SectionIntro
-            align="center"
-            description="A few practical questions organisers ask before planning a Newspaper Photo Booth."
-            eyebrow="FAQ"
-            title="Before your edition goes to print."
-          />
-          <div className="faq-list">
-            {faqs.slice(0, 6).map((faq) => (
-              <details className="faq-item" key={faq.question}>
-                <summary>{faq.question}</summary>
-                <p>{faq.answer}</p>
-              </details>
-            ))}
-          </div>
-          <div className="centered-action">
-            <CtaLink href="/faq" variant="text">
-              Read all frequently asked questions
-            </CtaLink>
           </div>
         </div>
       </section>
