@@ -230,14 +230,26 @@ export default function NewspaperPhotoBoothPage() {
             </CtaLink>
           </div>
           <div className="requirements-panel">
-            <MonitorCheck aria-hidden="true" size={40} strokeWidth={1.4} />
-            <p className="eyebrow">Plan with confidence</p>
-            <h3>No guessed specifications.</h3>
-            <p>
-              We recommend a configuration after reviewing your attendance,
-              print format, venue and programme. The agreed requirements are
-              recorded in the proposal.
-            </p>
+            <div className="requirements-panel-media">
+              <Image
+                alt="Lumina Voyage photo booth prepared for an event"
+                fill
+                sizes="(max-width: 820px) 100vw, 50vw"
+                src="/images/green-booths-photo.jpg"
+              />
+              <span className="requirements-icon">
+                <MonitorCheck aria-hidden="true" size={28} strokeWidth={1.5} />
+              </span>
+            </div>
+            <div className="requirements-panel-copy">
+              <p className="eyebrow">Plan with confidence</p>
+              <h3>No guessed specifications.</h3>
+              <p>
+                We recommend a configuration after reviewing your attendance,
+                print format, venue and programme. The agreed requirements are
+                recorded in the proposal.
+              </p>
+            </div>
           </div>
         </div>
       </section>

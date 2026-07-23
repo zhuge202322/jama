@@ -9,6 +9,7 @@ type PageHeroProps = {
   imageAlt: string;
   actions?: ReactNode;
   compact?: boolean;
+  className?: string;
 };
 
 export function PageHero({
@@ -19,9 +20,12 @@ export function PageHero({
   imageAlt,
   actions,
   compact = false,
+  className = "",
 }: PageHeroProps) {
   return (
-    <section className={`page-hero ${compact ? "page-hero-compact" : ""}`}>
+    <section
+      className={`page-hero ${compact ? "page-hero-compact" : ""} ${className}`.trim()}
+    >
       <Image
         alt={imageAlt}
         className="page-hero-image"

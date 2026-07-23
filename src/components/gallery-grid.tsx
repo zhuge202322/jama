@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import type { GalleryItem } from "@/lib/site";
 
-const categories = ["All", "Prints", "Booths", "Concepts"] as const;
+const categories = ["All", "Prints", "Photo Booths", "Concepts"] as const;
 
 export function GalleryGrid({ items }: { items: GalleryItem[] }) {
   const [active, setActive] = useState<(typeof categories)[number]>("All");

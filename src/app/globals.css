@@ -851,28 +851,134 @@ h3 {
   object-position: center 35%;
 }
 
-.about-logo-media {
-  min-height: 520px;
-  background: #f6e7c6;
+.about-mission-grid,
+.about-vision-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  gap: 72px;
+  align-items: center;
 }
 
-.about-logo-media img {
-  object-fit: contain;
-  padding: 70px;
+.about-mission-media {
+  position: relative;
+  min-height: 580px;
 }
 
-.vision-statement {
-  text-align: center;
+.about-mission-photo {
+  position: absolute;
+  inset: 0 auto 62px 0;
+  width: 82%;
+  border-radius: 8px;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
 }
 
-.vision-statement h2 {
+.about-mission-photo img,
+.about-mission-print img,
+.about-vision-photo img {
+  object-fit: cover;
+}
+
+.about-mission-print {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 34%;
+  aspect-ratio: 3 / 4;
+  border: 8px solid #ffffff;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.about-mission-logo {
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+  width: 190px;
+  height: 78px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.about-mission-logo img {
+  object-fit: cover;
+  padding: 6px 10px;
+}
+
+.about-purpose-copy h2,
+.about-vision-copy h2 {
   margin-bottom: 24px;
 }
 
-.vision-statement > p:last-child {
+.about-purpose-copy > p:last-child {
   margin-bottom: 0;
   color: var(--muted);
+  font-size: 18px;
+}
+
+.about-vision-section {
+  position: relative;
+  background: var(--primary);
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.about-vision-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 34%;
+  height: 6px;
+  background: var(--orange-strong);
+}
+
+.about-vision-grid {
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+}
+
+.about-vision-copy h2 {
+  color: #ffffff;
+}
+
+.about-vision-copy > p:last-child {
+  margin-bottom: 0;
+  color: rgba(255, 255, 255, 0.76);
   font-size: 19px;
+}
+
+.about-vision-copy .eyebrow {
+  font-size: 13px;
+}
+
+.about-vision-media {
+  position: relative;
+  min-height: 540px;
+}
+
+.about-vision-photo {
+  position: absolute;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.about-vision-photo-primary {
+  inset: 0 auto 0 0;
+  width: 68%;
+  box-shadow: var(--shadow-md);
+}
+
+.about-vision-photo-secondary {
+  right: 0;
+  bottom: 34px;
+  width: 42%;
+  height: 70%;
+  border: 8px solid var(--primary);
+  box-shadow: var(--shadow-md);
 }
 
 .split-copy h2 {
@@ -1190,6 +1296,23 @@ h3 {
   text-align: left;
 }
 
+.location-coming-soon {
+  width: 100%;
+  min-height: 76px;
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  align-items: center;
+  gap: 12px;
+}
+
+.location-list li.coming-soon {
+  background: rgba(255, 255, 255, 0.26);
+}
+
+.location-list li.coming-soon strong {
+  color: var(--muted);
+}
+
 .location-list li:hover,
 .location-list li.active {
   background: rgba(255, 255, 255, 0.45);
@@ -1311,19 +1434,52 @@ h3 {
 }
 
 .requirements-panel {
-  min-height: 440px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 48px;
+  min-height: 520px;
+  display: grid;
+  grid-template-rows: 220px 1fr;
   border-radius: 8px;
   background: var(--primary);
   color: #ffffff;
+  overflow: hidden;
 }
 
-.requirements-panel > svg {
-  margin-bottom: auto;
+.requirements-panel-media {
+  position: relative;
+  min-height: 220px;
+  overflow: hidden;
+}
+
+.requirements-panel-media::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 42%;
+  background: linear-gradient(to bottom, transparent, var(--primary));
+}
+
+.requirements-panel-media img {
+  object-fit: cover;
+  object-position: center 36%;
+}
+
+.requirements-icon {
+  position: absolute;
+  bottom: 18px;
+  left: 38px;
+  z-index: 1;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  background: rgba(7, 31, 26, 0.8);
   color: var(--cream);
+  backdrop-filter: blur(8px);
+}
+
+.requirements-panel-copy {
+  padding: 30px 38px 40px;
 }
 
 .requirements-panel h3 {
@@ -1332,7 +1488,7 @@ h3 {
   font-size: 34px;
 }
 
-.requirements-panel > p:last-child {
+.requirements-panel-copy > p:last-child {
   margin-bottom: 0;
   color: rgba(255, 255, 255, 0.76);
 }
@@ -1765,11 +1921,25 @@ h3 {
   padding-bottom: 64px;
 }
 
-.footer-brand img {
-  width: 220px;
-  height: 92px;
+.footer-logo-frame {
+  width: 244px;
+  height: 112px;
   margin-bottom: 22px;
+  border: 1px solid rgba(15, 82, 73, 0.16);
+  border-radius: 6px;
+  background: #f6e7c6;
+  overflow: hidden;
+}
+
+.footer-logo-frame img {
+  width: 100%;
+  height: 100%;
+  padding: 12px 14px;
   object-fit: cover;
+}
+
+.faq-hero .page-hero-content .eyebrow {
+  font-size: 18px;
 }
 
 .footer-brand p,
@@ -1969,9 +2139,19 @@ h3 {
   }
 
   .split-section,
-  .quote-layout {
+  .quote-layout,
+  .about-mission-grid,
+  .about-vision-grid {
     grid-template-columns: 1fr;
     gap: 46px;
+  }
+
+  .about-mission-media {
+    min-height: 540px;
+  }
+
+  .about-vision-media {
+    min-height: 520px;
   }
 
   .split-section.reverse > :first-child {
@@ -2145,6 +2325,41 @@ h3 {
     min-height: 440px;
   }
 
+  .about-mission-media {
+    min-height: 440px;
+  }
+
+  .about-mission-photo {
+    bottom: 48px;
+    width: 88%;
+  }
+
+  .about-mission-print {
+    width: 38%;
+    border-width: 6px;
+  }
+
+  .about-mission-logo {
+    left: 16px;
+    bottom: 18px;
+    width: 160px;
+    height: 68px;
+  }
+
+  .about-vision-media {
+    min-height: 430px;
+  }
+
+  .about-vision-photo-primary {
+    width: 72%;
+  }
+
+  .about-vision-photo-secondary {
+    width: 46%;
+    height: 66%;
+    border-width: 6px;
+  }
+
   .featured-edition-controls {
     min-height: 100px;
     align-items: flex-start;
@@ -2194,11 +2409,26 @@ h3 {
   .event-question-panel,
   .requirements-panel {
     min-height: 0;
+  }
+
+  .event-question-panel {
     padding: 30px 24px;
   }
 
-  .requirements-panel > svg {
-    margin-bottom: 60px;
+  .requirements-panel {
+    grid-template-rows: 190px 1fr;
+  }
+
+  .requirements-panel-media {
+    min-height: 190px;
+  }
+
+  .requirements-panel-copy {
+    padding: 28px 24px 32px;
+  }
+
+  .requirements-icon {
+    left: 24px;
   }
 
   .timeline-item {

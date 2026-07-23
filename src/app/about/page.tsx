@@ -6,7 +6,7 @@ import { PageHero } from "@/components/page-hero";
 export const metadata: Metadata = {
   title: "About Lumina Voyage",
   description:
-    "Lumina Voyage is a Singapore-based event experience brand creating custom newspaper photo booth experiences.",
+    "Lumina Voyage is a Singapore-based event experience brand creating custom photo booth experiences.",
   alternates: { canonical: "/about" },
 };
 
@@ -16,24 +16,42 @@ export default function AboutPage() {
       <PageHero
         actions={<CtaLink href="/contact">Plan with us</CtaLink>}
         compact
-        description="We create custom newspaper photo booth experiences for corporate events, MICE, brand activations and celebrations across Singapore."
+        description="We create custom photo booth experiences for corporate events, MICE, brand activations and celebrations across Singapore."
         eyebrow="About Us"
         image="/images/green-booths-photo.jpg"
         imageAlt="Green Lumina Voyage newspaper photo booths"
         title="Event technology with a human sense of occasion."
       />
 
-      <section className="section section-white">
-        <div className="container split-section">
-          <div className="split-media about-logo-media">
-            <Image
-              alt="Lumina Voyage stacked logo with camera and globe emblem"
-              fill
-              sizes="(max-width: 820px) 100vw, 50vw"
-              src="/images/logo.png"
-            />
+      <section className="section section-white about-mission-section">
+        <div className="container about-mission-grid">
+          <div className="about-mission-media">
+            <div className="about-mission-photo">
+              <Image
+                alt="Two green Lumina Voyage photo booths at an event"
+                fill
+                sizes="(max-width: 820px) 100vw, 52vw"
+                src="/images/green-booths-photo.jpg"
+              />
+            </div>
+            <div className="about-mission-print">
+              <Image
+                alt="Haji Lane edition photo booth keepsake"
+                fill
+                sizes="(max-width: 620px) 42vw, 220px"
+                src="/images/haji-lane-sample.jpg"
+              />
+            </div>
+            <div className="about-mission-logo" aria-hidden="true">
+              <Image
+                alt=""
+                fill
+                sizes="180px"
+                src="/images/logo.png"
+              />
+            </div>
           </div>
-          <div className="split-copy">
+          <div className="about-purpose-copy">
             <p className="eyebrow">Our Mission</p>
             <h2>Turning life&apos;s moments into unforgettable experiences.</h2>
             <div className="editorial-rule" />
@@ -46,15 +64,35 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section section-cream">
-        <div className="narrow vision-statement">
-          <p className="eyebrow">Our Vision</p>
-          <h2>Redefining how people celebrate, connect, and preserve memories.</h2>
-          <p>
-            To become Asia&apos;s leading experiential photo booth brand,
-            redefining how people celebrate, connect, and preserve memories
-            through innovative visual experiences.
-          </p>
+      <section className="section about-vision-section">
+        <div className="container about-vision-grid">
+          <div className="about-vision-copy">
+            <p className="eyebrow eyebrow-light">Our Vision</p>
+            <h2>Redefining how people celebrate, connect, and preserve memories.</h2>
+            <p>
+              To become Asia&apos;s leading experiential photo booth brand,
+              redefining how people celebrate, connect, and preserve memories
+              through innovative visual experiences.
+            </p>
+          </div>
+          <div className="about-vision-media">
+            <div className="about-vision-photo about-vision-photo-primary">
+              <Image
+                alt="Yellow Lumina Voyage photo booth ready for guests"
+                fill
+                sizes="(max-width: 820px) 62vw, 28vw"
+                src="/images/yellow-booth-photo.jpg"
+              />
+            </div>
+            <div className="about-vision-photo about-vision-photo-secondary">
+              <Image
+                alt="Chinese New Year photo booth keepsake"
+                fill
+                sizes="(max-width: 820px) 42vw, 18vw"
+                src="/images/cny-sample.jpg"
+              />
+            </div>
+          </div>
         </div>
       </section>
 

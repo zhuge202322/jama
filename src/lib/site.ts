@@ -9,7 +9,6 @@ export const siteConfig = {
     "photo88@luminavoyagetech.com",
   whatsappNumber:
     process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "658148399",
-  whatsappLabel: "65-8148399",
   address:
     "101 Cecil Street, #13-10, Tong Eng Building, Singapore 069533",
   instagram: "https://www.instagram.com/luminavoyagetech/",
@@ -171,7 +170,7 @@ export type GalleryItem = {
   src: string;
   alt: string;
   title: string;
-  category: "Prints" | "Booths" | "Concepts";
+  category: "Prints" | "Photo Booths" | "Concepts";
   orientation: "portrait" | "landscape";
   note: string;
 };
@@ -196,8 +195,8 @@ export const galleryItems: GalleryItem[] = [
   {
     src: "/images/green-booths-photo.jpg",
     alt: "Two green and white Lumina Voyage newspaper photo booths",
-    title: "Lumina Voyage booth",
-    category: "Booths",
+    title: "Lumina Voyage photo booth",
+    category: "Photo Booths",
     orientation: "portrait",
     note: "Equipment view",
   },
@@ -205,7 +204,7 @@ export const galleryItems: GalleryItem[] = [
     src: "/images/yellow-booth-photo.jpg",
     alt: "Yellow newspaper photo booth with screen, camera and print opening",
     title: "On-site booth format",
-    category: "Booths",
+    category: "Photo Booths",
     orientation: "portrait",
     note: "Equipment reference",
   },
@@ -229,9 +228,9 @@ export const galleryItems: GalleryItem[] = [
 
 export const faqs = [
   {
-    question: "What is a newspaper photo booth?",
+    question: "What is a photo booth?",
     answer:
-      "It is an on-site photo experience that turns each guest's portrait into a custom newspaper-style front page, with a physical print and an optional digital copy.",
+      "It is an on-site experience that captures each guest and turns the moment into a physical or digital keepsake. Lumina Voyage currently offers a newspaper-style photo booth, with more experience types being introduced.",
   },
   {
     question: "What can be customised?",
@@ -246,12 +245,12 @@ export const faqs = [
   {
     question: "How quickly are prints produced?",
     answer:
-      "Production speed depends on the selected format and event configuration. We will confirm the expected guest flow and print time when preparing your event plan.",
+      "Production speed depends on the type of product selected, generally ranging from 10 seconds to 3 minutes. We will confirm the estimated production time when preparing your event plan.",
   },
   {
     question: "How do guests receive a digital copy?",
     answer:
-      "Digital delivery can be configured around the event's needs. Available channels and any venue network requirements are confirmed before the event.",
+      "Digital copies can be downloaded instantly by scanning a QR code.",
   },
   {
     question: "Are setup and on-site support included?",

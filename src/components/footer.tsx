@@ -8,12 +8,14 @@ export function Footer() {
     <footer className="site-footer">
       <div className="container footer-grid">
         <div className="footer-brand">
-          <Image
-            alt="Lumina Voyage"
-            height={1024}
-            src="/images/logo.png"
-            width={1536}
-          />
+          <div className="footer-logo-frame">
+            <Image
+              alt="Lumina Voyage"
+              height={1024}
+              src="/images/logo.png"
+              width={1536}
+            />
+          </div>
           <p>
             Custom photo booth experiences for events across Singapore.
           </p>
@@ -43,7 +45,7 @@ export function Footer() {
             <li>
               <MessageCircle aria-hidden="true" size={17} />
               <a href={whatsappUrl()} rel="noreferrer" target="_blank">
-                WhatsApp {siteConfig.whatsappLabel}
+                WhatsApp
               </a>
             </li>
             <li>

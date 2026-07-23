@@ -122,6 +122,12 @@ export function SingaporeLocations() {
                 </button>
               </li>
             ))}
+            <li className="coming-soon">
+              <div className="location-coming-soon">
+                <span>06</span>
+                <strong>Coming soon</strong>
+              </div>
+            </li>
           </ol>
         </div>
       </div>

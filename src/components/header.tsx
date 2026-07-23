@@ -36,7 +36,7 @@ export function Header() {
             </a>
             <a href={whatsappUrl()} rel="noreferrer" target="_blank">
               <MessageCircle aria-hidden="true" size={15} />
-              <span>WhatsApp {siteConfig.whatsappLabel}</span>
+              <span>WhatsApp</span>
             </a>
             <a
               className="utility-social"

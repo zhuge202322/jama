@@ -25,6 +25,7 @@ export default function FaqPage() {
   return (
     <>
       <PageHero
+        className="faq-hero"
         compact
         description="Need help? We've got the answers you're looking for."
         eyebrow="Help & FAQs"
