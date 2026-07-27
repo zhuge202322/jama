@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 import { z } from "zod";
 
 export const runtime = "nodejs";
@@ -23,6 +24,8 @@ const enquirySchema = z.object({
 const requestLog = new Map<string, number[]>();
 const WINDOW_MS = 10 * 60 * 1000;
 const MAX_REQUESTS = 5;
+const SMTP_TIMEOUT_MS = 10_000;
+const DEFAULT_CONTACT_EMAIL = "photo88@luminavoyagetech.com";
 
 function isRateLimited(key: string) {
   const now = Date.now();
@@ -46,6 +49,40 @@ function escapeHtml(value: string) {
         '"': "&quot;",
       })[character] ?? character,
   );
+}
+
+function cleanSubjectPart(value: string) {
+  return value.replace(/[\r\n]+/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function getRecipients() {
+  return (process.env.CONTACT_TO_EMAIL ?? DEFAULT_CONTACT_EMAIL)
+    .split(",")
+    .map((email) => email.trim())
+    .filter(Boolean);
+}
+
+function getMailConfig() {
+  const host = process.env.SMTP_HOST ?? "smtp.gmail.com";
+  const port = Number.parseInt(process.env.SMTP_PORT ?? "465", 10);
+  const secure = (process.env.SMTP_SECURE ?? "true") === "true";
+  const user = process.env.SMTP_USER;
+  const pass = process.env.SMTP_PASS;
+  const recipients = getRecipients();
+
+  if (!user || !pass || !Number.isInteger(port) || recipients.length === 0) {
+    return null;
+  }
+
+  return {
+    host,
+    port,
+    secure,
+    user,
+    pass,
+    recipients,
+    from: process.env.EMAIL_FROM ?? `Lumina Voyage Website <${user}>`,
+  };
 }
 
 export async function POST(request: Request) {
@@ -84,11 +121,9 @@ export async function POST(request: Request) {
     );
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_TO_EMAIL;
-  const from = process.env.EMAIL_FROM;
+  const mailConfig = getMailConfig();
 
-  if (!apiKey || !to || !from) {
+  if (!mailConfig) {
     return NextResponse.json(
       {
         message:
@@ -114,35 +149,78 @@ export async function POST(request: Request) {
   ];
 
   const html = `
-    <h1>New Lumina Voyage event enquiry</h1>
-    <table cellpadding="8" cellspacing="0" border="1" style="border-collapse:collapse;border-color:#d7e2dc">
-      ${rows
-        .map(
-          ([label, value]) =>
-            `<tr><th align="left">${escapeHtml(label)}</th><td>${escapeHtml(value)}</td></tr>`,
-        )
-        .join("")}
-    </table>
-    <h2>Event notes</h2>
-    <p>${escapeHtml(data.message || "No additional notes").replace(/\n/g, "<br>")}</p>
+    <div style="margin:0;background:#f5f7f5;padding:32px 16px;color:#132e29;font-family:Arial,sans-serif">
+      <div style="margin:0 auto;max-width:680px;border:1px solid #d7e2dc;background:#ffffff;padding:32px">
+        <p style="margin:0 0 8px;color:#0f6659;font-size:13px;font-weight:700;text-transform:uppercase">Lumina Voyage website</p>
+        <h1 style="margin:0 0 24px;font-size:28px">New event enquiry</h1>
+        <table cellpadding="10" cellspacing="0" style="width:100%;border-collapse:collapse;border:1px solid #d7e2dc">
+          ${rows
+            .map(
+              ([label, value]) =>
+                `<tr><th align="left" style="width:34%;border-bottom:1px solid #d7e2dc;background:#f5f7f5">${escapeHtml(label)}</th><td style="border-bottom:1px solid #d7e2dc">${escapeHtml(value)}</td></tr>`,
+            )
+            .join("")}
+        </table>
+        <h2 style="margin:28px 0 10px;font-size:20px">Event notes</h2>
+        <p style="margin:0;line-height:1.6">${escapeHtml(data.message || "No additional notes").replace(/\n/g, "<br>")}</p>
+        <p style="margin:28px 0 0;color:#61706c;font-size:13px">Reply to this email to contact ${escapeHtml(data.name)} at ${escapeHtml(data.email)}.</p>
+      </div>
+    </div>
   `;
 
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
+  const text = [
+    "New Lumina Voyage event enquiry",
+    "",
+    ...rows.map(([label, value]) => `${label}: ${value}`),
+    "",
+    "Event notes:",
+    data.message || "No additional notes",
+    "",
+    `Reply to: ${data.name} <${data.email}>`,
+  ].join("\n");
+
+  const transporter = nodemailer.createTransport({
+    host: mailConfig.host,
+    port: mailConfig.port,
+    secure: mailConfig.secure,
+    auth: {
+      user: mailConfig.user,
+      pass: mailConfig.pass,
     },
-    body: JSON.stringify({
-      from,
-      to: [to],
-      reply_to: data.email,
-      subject: `Event enquiry: ${data.company} · ${data.eventType}`,
-      html,
-    }),
+    connectionTimeout: SMTP_TIMEOUT_MS,
+    greetingTimeout: SMTP_TIMEOUT_MS,
+    socketTimeout: SMTP_TIMEOUT_MS,
   });
 
-  if (!response.ok) {
+  try {
+    const result = await transporter.sendMail({
+      from: mailConfig.from,
+      to: mailConfig.recipients,
+      replyTo: {
+        name: data.name,
+        address: data.email,
+      },
+      subject: `Event enquiry: ${cleanSubjectPart(data.company)} · ${cleanSubjectPart(data.eventType)}`,
+      html,
+      text,
+    });
+
+    if (result.accepted.length === 0) {
+      throw new Error("The SMTP server did not accept any recipients.");
+    }
+  } catch (error) {
+    const smtpError = error as {
+      code?: string;
+      command?: string;
+      message?: string;
+      responseCode?: number;
+    };
+    console.error("SMTP enquiry delivery failed", {
+      code: smtpError.code,
+      command: smtpError.command,
+      responseCode: smtpError.responseCode,
+      error: error instanceof Error ? error.message : "Unknown email error",
+    });
     return NextResponse.json(
       {
         message:

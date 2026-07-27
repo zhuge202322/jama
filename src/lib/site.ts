@@ -8,7 +8,7 @@ export const siteConfig = {
     process.env.NEXT_PUBLIC_CONTACT_EMAIL ??
     "photo88@luminavoyagetech.com",
   whatsappNumber:
-    process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "658148399",
+    process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "6581458399",
   address:
     "101 Cecil Street, #13-10, Tong Eng Building, Singapore 069533",
   instagram: "https://www.instagram.com/luminavoyagetech/",
