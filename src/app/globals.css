@@ -861,52 +861,21 @@ h3 {
 
 .about-mission-media {
   position: relative;
-  min-height: 580px;
+  min-height: 0;
+  aspect-ratio: 3 / 2;
 }
 
 .about-mission-photo {
   position: absolute;
-  inset: 0 auto 62px 0;
-  width: 82%;
+  inset: 0;
   border-radius: 8px;
   box-shadow: var(--shadow-md);
   overflow: hidden;
 }
 
 .about-mission-photo img,
-.about-mission-print img,
 .about-vision-photo img {
   object-fit: cover;
-}
-
-.about-mission-print {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 34%;
-  aspect-ratio: 3 / 4;
-  border: 8px solid #ffffff;
-  border-radius: 8px;
-  background: #ffffff;
-  box-shadow: var(--shadow-md);
-  overflow: hidden;
-}
-
-.about-mission-logo {
-  position: absolute;
-  left: 24px;
-  bottom: 24px;
-  width: 190px;
-  height: 78px;
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.94);
-  box-shadow: var(--shadow-sm);
-  overflow: hidden;
-}
-
-.about-mission-logo img {
-  object-fit: cover;
-  padding: 6px 10px;
 }
 
 .about-purpose-copy h2,
@@ -957,7 +926,8 @@ h3 {
 
 .about-vision-media {
   position: relative;
-  min-height: 540px;
+  min-height: 0;
+  aspect-ratio: 3 / 2;
 }
 
 .about-vision-photo {
@@ -967,17 +937,7 @@ h3 {
 }
 
 .about-vision-photo-primary {
-  inset: 0 auto 0 0;
-  width: 68%;
-  box-shadow: var(--shadow-md);
-}
-
-.about-vision-photo-secondary {
-  right: 0;
-  bottom: 34px;
-  width: 42%;
-  height: 70%;
-  border: 8px solid var(--primary);
+  inset: 0;
   box-shadow: var(--shadow-md);
 }
 
@@ -2146,14 +2106,6 @@ h3 {
     gap: 46px;
   }
 
-  .about-mission-media {
-    min-height: 540px;
-  }
-
-  .about-vision-media {
-    min-height: 520px;
-  }
-
   .split-section.reverse > :first-child {
     order: 0;
   }
@@ -2323,41 +2275,6 @@ h3 {
 
   .split-media {
     min-height: 440px;
-  }
-
-  .about-mission-media {
-    min-height: 440px;
-  }
-
-  .about-mission-photo {
-    bottom: 48px;
-    width: 88%;
-  }
-
-  .about-mission-print {
-    width: 38%;
-    border-width: 6px;
-  }
-
-  .about-mission-logo {
-    left: 16px;
-    bottom: 18px;
-    width: 160px;
-    height: 68px;
-  }
-
-  .about-vision-media {
-    min-height: 430px;
-  }
-
-  .about-vision-photo-primary {
-    width: 72%;
-  }
-
-  .about-vision-photo-secondary {
-    width: 46%;
-    height: 66%;
-    border-width: 6px;
   }
 
   .featured-edition-controls {

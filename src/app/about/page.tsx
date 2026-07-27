@@ -28,26 +28,10 @@ export default function AboutPage() {
           <div className="about-mission-media">
             <div className="about-mission-photo">
               <Image
-                alt="Two green Lumina Voyage photo booths at an event"
+                alt="Guests creating travel memories with a Lumina Voyage photo booth"
                 fill
                 sizes="(max-width: 820px) 100vw, 52vw"
-                src="/images/green-booths-photo.jpg"
-              />
-            </div>
-            <div className="about-mission-print">
-              <Image
-                alt="Haji Lane edition photo booth keepsake"
-                fill
-                sizes="(max-width: 620px) 42vw, 220px"
-                src="/images/haji-lane-sample.jpg"
-              />
-            </div>
-            <div className="about-mission-logo" aria-hidden="true">
-              <Image
-                alt=""
-                fill
-                sizes="180px"
-                src="/images/logo.png"
+                src="/images/mission.png"
               />
             </div>
           </div>
@@ -78,18 +62,10 @@ export default function AboutPage() {
           <div className="about-vision-media">
             <div className="about-vision-photo about-vision-photo-primary">
               <Image
-                alt="Yellow Lumina Voyage photo booth ready for guests"
+                alt="Lumina Voyage photo booth connecting travel memories across Asia"
                 fill
-                sizes="(max-width: 820px) 62vw, 28vw"
-                src="/images/yellow-booth-photo.jpg"
-              />
-            </div>
-            <div className="about-vision-photo about-vision-photo-secondary">
-              <Image
-                alt="Chinese New Year photo booth keepsake"
-                fill
-                sizes="(max-width: 820px) 42vw, 18vw"
-                src="/images/cny-sample.jpg"
+                sizes="(max-width: 820px) 100vw, 52vw"
+                src="/images/vision.jpg"
               />
             </div>
           </div>
